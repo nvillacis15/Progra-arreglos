@@ -1,0 +1,154 @@
+//Métodos
+package metodos;
+
+public class sistema {
+
+    private int temperatura;
+    private int ruido;
+    private String riesgo;
+
+    public sistema(int temperatura,
+                   int ruido) {
+
+        this.temperatura = temperatura;
+        this.ruido = ruido;
+
+        calcularRiesgo();
+    }
+
+    public int getTemperatura() {
+        return temperatura;
+    }
+
+    public int getRuido() {
+        return ruido;
+    }
+
+    public String getRiesgo() {
+        return riesgo;
+    }
+
+    public void setTemperatura(int temperatura) {
+        this.temperatura = temperatura;
+    }
+
+    public void setRuido(int ruido) {
+        this.ruido = ruido;
+    }
+
+    public void calcularRiesgo() {
+
+        if(temperatura > 70 && ruido > 70){
+
+            riesgo = "ALTO";
+
+        }else if(temperatura > 70 || ruido > 70){
+
+            riesgo = "MEDIO";
+
+        }else{
+
+            riesgo = "BAJO";
+        }
+    }
+
+    public void mostrarResultado() {
+
+        System.out.println("Temperatura: "
+                + temperatura);
+
+        System.out.println("Ruido: "
+                + ruido);
+
+        System.out.println("Riesgo: "
+                + riesgo);
+    }
+}
+
+//Interfaz
+package INTERFAZ;
+
+import java.util.Scanner;
+import metodos.sistema;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        int temperatura;
+        int ruido;
+        int opcion;
+        int indice = 0;
+
+        final int MAX = 3;
+
+        sistema evaluaciones[] = new sistema[MAX];
+
+        Scanner sc = new Scanner(System.in);
+
+        do{
+
+            System.out.println("\n===== MENU =====");
+            System.out.println("1. Ingresar evaluación");
+            System.out.println("2. Mostrar evaluación");
+            System.out.println("3. Salir");
+
+            System.out.print("Seleccione opción: ");
+            opcion = Integer.parseInt(sc.nextLine());
+
+            switch(opcion){
+
+                case 1:
+
+                    if(indice < MAX){
+
+                        System.out.print("Ingrese temperatura: ");
+                        temperatura =
+                                Integer.parseInt(sc.nextLine());
+
+                        System.out.print("Ingrese ruido: ");
+                        ruido =
+                                Integer.parseInt(sc.nextLine());
+
+                        evaluaciones[indice++] =
+                                new sistema(temperatura,ruido);
+
+                    }else{
+
+                        System.out.println("No hay más espacio");
+                    }
+
+                    break;
+
+                case 2:
+
+                    System.out.print("Ingrese índice: ");
+                    int pos =
+                            Integer.parseInt(sc.nextLine());
+
+                    if(pos >= 0 &&
+                            pos < MAX &&
+                            evaluaciones[pos] != null){
+
+                        evaluaciones[pos].mostrarResultado();
+
+                    }else{
+
+                        System.out.println("Índice inválido");
+                    }
+
+                    break;
+
+                case 3:
+
+                    System.out.println("Programa finalizado");
+                    break;
+
+                default:
+
+                    System.out.println("Opción incorrecta");
+            }
+
+        }while(opcion != 3);
+    }
+}
