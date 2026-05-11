@@ -1,0 +1,94 @@
+//Métodos
+{
+
+    private String idLuz;
+    private int nivelBrillo;
+    private boolean encendida;
+
+    public sistema(String idLuz) {
+
+        this.idLuz = idLuz;
+        this.nivelBrillo = 0;
+        this.encendida = false;
+    }
+
+    public void encender() {
+
+        encendida = true;
+    }
+
+    public void apagar() {
+
+        encendida = false;
+    }
+
+    public void ajustarBrillo(int nuevoNivel) {
+
+        if(encendida){
+
+            if(nuevoNivel >= 0 &&
+                    nuevoNivel <= 100){
+
+                nivelBrillo = nuevoNivel;
+
+            }else{
+
+                System.out.println(
+                        "Brillo fuera de rango");
+            }
+
+        }else{
+
+            System.out.println(
+                    "La luz está apagada");
+        }
+    }
+
+    public void mostrarEstado() {
+
+        System.out.println("ID Luz: " + idLuz);
+
+        System.out.println("Brillo: "
+                + nivelBrillo);
+
+        if(encendida){
+
+            System.out.println("Estado: Encendida");
+
+        }else{
+
+            System.out.println("Estado: Apagada");
+        }
+    }
+}
+//Interfaz
+package INTERFAZ;
+
+import metodos.sistema;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        final int MAX = 2;
+
+        sistema luces[] = new sistema[MAX];
+
+        luces[0] = new sistema("L1");
+
+        luces[1] = new sistema("L2");
+
+        luces[0].encender();
+
+        luces[0].ajustarBrillo(80);
+
+        luces[1].apagar();
+
+        for(int i = 0; i < luces.length; i++){
+
+            System.out.println("\nLuz " + i);
+
+            luces[i].mostrarEstado();
+        }
+    }
+}
