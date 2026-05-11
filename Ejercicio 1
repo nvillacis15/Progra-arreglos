@@ -1,0 +1,108 @@
+//Métodos
+package metodos;
+
+public class sistema {
+
+    private String nombreUsuario;
+    private String correo;
+    private String contrasena;
+    public sistema(String nombreUsuario,
+                   String correo,
+                   String contrasena) {
+
+        this.nombreUsuario = nombreUsuario;
+        this.correo = correo;
+
+        setContrasena(contrasena);
+    }
+
+    public String getNombreUsuario() {
+        return nombreUsuario;
+    }
+
+    public String getCorreo() {
+        return correo;
+    }
+
+    public String getContrasena() {
+        return contrasena;
+    }
+    public void setNombreUsuario(String nombreUsuario) {
+        this.nombreUsuario = nombreUsuario;
+    }
+
+    public void setCorreo(String correo) {
+        this.correo = correo;
+    }
+
+    public void setContrasena(String contrasena) {
+
+        if(contrasena.length() >= 8){
+
+            this.contrasena = contrasena;
+
+        }else{
+
+            System.out.println(
+                    "La contraseña debe tener mínimo 8 caracteres");
+        }
+    }
+    
+    public void mostrarDatos() {
+
+        System.out.println("Usuario: "
+                + nombreUsuario);
+
+        System.out.println("Correo: "
+                + correo);
+    }
+//Interfaz 
+
+package INTERFAZ;
+
+import metodos.sistema;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        final int MAX = 3;
+        sistema usuarios[] = new sistema[MAX];
+
+
+        usuarios[0] =
+                new sistema("nicolas",
+                        "nico@gmail.com",
+                        "12345678");
+
+        usuarios[1] =
+                new sistema("maria",
+                        "maria@gmail.com",
+                        "abc12345");
+
+        usuarios[2] =
+                new sistema("juan",
+                        "juan@gmail.com",
+                        "123");
+        for(int i = 0; i < usuarios.length; i++){
+
+            System.out.println("\nUsuario " + i);
+
+            usuarios[i].mostrarDatos();
+        }
+
+        for(int i = 0; i < usuarios.length; i++){
+
+            usuarios[i].setCorreo(
+                    "nuevo" + i + "@gmail.com");
+        }
+
+
+        System.out.println("\nDATOS MODIFICADOS");
+
+        for(int i = 0; i < usuarios.length; i++){
+
+            usuarios[i].mostrarDatos();
+        }
+    }
+
