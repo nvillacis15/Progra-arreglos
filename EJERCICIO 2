@@ -1,0 +1,76 @@
+//Metodos 
+package metodos;
+
+public class sistema {
+
+    private String idSensor;
+    private double valorActual;
+    private String unidad;
+
+    public sistema(String idSensor,
+                   double valorActual,
+                   String unidad) {
+
+        this.idSensor = idSensor;
+        this.valorActual = valorActual;
+        this.unidad = unidad;
+    }
+
+    public double getValorActual() {
+        return valorActual;
+    }
+
+    public String getUnidad() {
+        return unidad;
+    }
+
+    public void setValorActual(double valorActual) {
+        this.valorActual = valorActual;
+    }
+
+    public void setUnidad(String unidad) {
+        this.unidad = unidad;
+    }
+
+    public void mostrarLectura() {
+
+        System.out.println("ID Sensor: " + idSensor);
+
+        System.out.println("Lectura: "
+                + valorActual + " " + unidad);
+    }
+}
+
+//Interfaz
+package INTERFAZ;
+
+import metodos.sistema;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        final int MAX = 2;
+
+        sistema sensores[] = new sistema[MAX];
+
+        sensores[0] =
+                new sistema("S1",25.6,"C");
+
+        sensores[1] =
+                new sistema("S2",30.2,"C");
+
+        for(int i = 0; i < sensores.length; i++){
+
+            sensores[i].mostrarLectura();
+        }
+
+        sensores[0].setValorActual(28.5);
+
+        sensores[0].setUnidad("C");
+
+        System.out.println("\nNueva lectura:");
+
+        sensores[0].mostrarLectura();
+    }
+}
